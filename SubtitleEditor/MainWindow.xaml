@@ -1,0 +1,164 @@
+﻿<controls:MetroWindow x:Class="SubtitleEditor.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SubtitleEditor"
+        xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        mc:Ignorable="d"
+        TitlebarHeight="48"
+                      RightWindowCommandsOverlayBehavior="HiddenTitleBar"
+        FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
+        FontSize="14"
+        Title="Subtitle Editor" Height="720" Width="1000"
+        ResizeMode="CanResizeWithGrip"
+        Padding="1"
+                      EnableDWMDropShadow="True"
+        WindowCloseButtonStyle="{StaticResource MetroWindowCloseButtonStyle}" ShowIconOnTitleBar="False"
+                      >
+
+    <controls:MetroWindow.RightWindowCommands>
+        <controls:WindowCommands>
+
+            <Button ToolTip="Open a subtitle file to adjust" Click="OpenSubtitle_Click" >
+                <StackPanel Orientation="Horizontal">
+                    <Rectangle Width="24" Height="24" Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                        <Rectangle.OpacityMask>
+                            <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_page_text}" />
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                    <TextBlock Margin="4 0 0 0"
+                   VerticalAlignment="Center"
+                   Text="Open Subtitle" />
+                </StackPanel>
+            </Button>
+
+            <Button ToolTip="Save edited subtitle contents to a file" Click="SaveSubtitle_Click" Visibility="{Binding HasSubtitle, Converter={StaticResource BoolToVisibilityConverter}}">
+                <StackPanel Orientation="Horizontal">
+                    <Rectangle Width="24" Height="24" Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                        <Rectangle.OpacityMask>
+                            <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_save}" />
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                    <TextBlock Margin="4 0 0 0"
+                   VerticalAlignment="Center"
+                   Text="Save" />
+                </StackPanel>
+            </Button>
+
+            <Button ToolTip="Filter" Click="Filter_Click" Visibility="{Binding HasSubtitle, Converter={StaticResource BoolToVisibilityConverter}}">
+                <StackPanel Orientation="Horizontal">
+                    <Rectangle Width="24" Height="24" Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                        <Rectangle.OpacityMask>
+                            <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_filter}" />
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                    <TextBlock Margin="4 0 0 0"
+                   VerticalAlignment="Center"
+                   Text="Filter" />
+                </StackPanel>
+            </Button>
+
+        </controls:WindowCommands>
+
+    </controls:MetroWindow.RightWindowCommands>
+
+    <Grid>
+        <!--<Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            --><!--<RowDefinition Height="Auto" />--><!--
+        </Grid.RowDefinitions>-->
+
+        <!--<GroupBox Header="Filter Criteria" Visibility="{Binding HasSubtitle, Converter={StaticResource BoolToVisibilityConverter}}">
+            <StackPanel Orientation="Horizontal" DataContext="{Binding FilterCriteria}">
+                <StackPanel Margin="5,0" >
+                    <TextBlock Text="Subtitle Text" />
+                    <xctk:WatermarkTextBox AutoSelectBehavior="OnFocus" Width="300" Text="{Binding SubtitleText, UpdateSourceTrigger=PropertyChanged}" Watermark="Enter subtitle text to filter" />
+                </StackPanel>
+                <StackPanel Margin="5,0" >
+                    <TextBlock Text="Start Time" />
+                    <xctk:TimeSpanUpDown Height="25" Value="{Binding StartTime}" />
+                </StackPanel>
+                <StackPanel Margin="5,0" >
+                    <TextBlock Text="End Time" />
+                    <xctk:TimeSpanUpDown Height="25" Value="{Binding EndTime}" />
+                </StackPanel>
+                
+                --><!--<Button Content="Filter" Command="{Binding FilterCommand}" />--><!--
+                
+            </StackPanel>
+        </GroupBox>-->
+
+        <!--<GroupBox Header="Subtitle File Content" Visibility="{Binding HasSubtitle, Converter={StaticResource BoolToVisibilityConverter}}">-->
+            <ListBox Grid.Row="1" DataContext="{Binding Subtitle}" ItemsSource="{Binding FilteredParts}" 
+                     SelectedItem="{Binding SelectedPart}" Style="{StaticResource MaterialDesignCardsListBox}">
+
+            </ListBox>
+        <!--</GroupBox>-->
+
+        <!--<Grid x:Name="SubtitleEditor" Grid.Row="2" Visibility="{Binding HasSubtitle, Converter={StaticResource BoolToVisibilityConverter}}">-->
+
+            <!--<local:SubtitleEditorView  DataContext="{Binding Subtitle.SelectedPart}"/>-->
+            
+        <!--</Grid>-->
+
+        <!--<simpleChildWindow:ChildWindow  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+							   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+							   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+							   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+							   xmlns:simpleChildWindow="clr-namespace:MahApps.Metro.SimpleChildWindow;assembly=MahApps.Metro.SimpleChildWindow"
+							   mc:Ignorable="d"
+							   d:DesignHeight="300"
+							   d:DesignWidth="300"
+							   CloseOnOverlay="True"
+                               x:Name="EditSubtitleDialog"
+							   GlowBrush="{DynamicResource AccentColorBrush}"
+							   BorderBrush="{DynamicResource AccentColorBrush}"
+							   BorderThickness="1"
+                               EnableDropShadow="True"
+                               IsModal="True"
+                               ShowCloseButton="True"
+                               IsOpen="{Binding IsDialogOpen}"
+							   Title="Edit Subtitle">
+            <local:SubtitleEditorView />
+        </simpleChildWindow:ChildWindow>-->
+
+    </Grid>
+
+    <controls:MetroWindow.Flyouts>
+        <controls:FlyoutsControl>
+            <controls:Flyout x:Name="SubtitleEditorFlyout" Width="360" Header="Edit Subtitle" Margin="0,0,0,0"
+                             Position="Right" Theme="Accent" ExternalCloseButton="Right" Opacity="0.9"
+                             AnimateOnPositionChange="True" DataContext="{Binding Subtitle.SelectedPart}">
+                <local:SubtitleEditorView />
+            </controls:Flyout>
+
+            <controls:Flyout x:Name="FilterFlyout" Header="Edit Filter Criteria" Margin="0,0,0,0"
+                             Position="Bottom" Theme="Accent" 
+                             AnimateOnPositionChange="True" DataContext="{Binding FilterCriteria}">
+                <StackPanel Margin="10" VerticalAlignment="Center" Orientation="Horizontal">
+                    <StackPanel Margin="5,0" >
+                        <TextBlock Text="Subtitle Text" />
+                        <xctk:WatermarkTextBox HorizontalAlignment="Left" AutoSelectBehavior="OnFocus" Width="300" Text="{Binding SubtitleText, UpdateSourceTrigger=PropertyChanged}" Watermark="Enter subtitle text to filter" />
+                    </StackPanel>
+                    <StackPanel Margin="5,0" >
+                        <TextBlock Text="Start Time" />
+                        <xctk:TimeSpanUpDown HorizontalAlignment="Left" Width="80" Height="25" Value="{Binding StartTime}" />
+                    </StackPanel>
+                    <StackPanel Margin="5,0" >
+                        <TextBlock Text="End Time" />
+                        <xctk:TimeSpanUpDown HorizontalAlignment="Left" Width="80" Height="25" Value="{Binding EndTime}" />
+                    </StackPanel>
+
+                    <!--<Button Content="Filter" Command="{Binding FilterCommand}" />-->
+
+                </StackPanel>
+            </controls:Flyout>
+
+        </controls:FlyoutsControl>
+    </controls:MetroWindow.Flyouts>
+
+
+</controls:MetroWindow>

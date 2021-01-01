@@ -1,0 +1,211 @@
+﻿<Application x:Class="SubtitleEditor.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:SubtitleEditor"
+             xmlns:conv="clr-namespace:SubtitleEditor.Converters"
+             xmlns:options="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+
+
+                <!-- MahApps -->
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Blue.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
+
+                <!-- Material -->
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ComboBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.CheckBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ListBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.RadioButton.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ToggleButton.xaml" />
+                
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/MaterialDesignColor.LightBlue.xaml" />
+
+                <!-- primary color -->
+                <ResourceDictionary>
+                    <SolidColorBrush x:Key="PrimaryHueLightBrush" Color="{StaticResource Primary100}"/>
+                    <SolidColorBrush x:Key="PrimaryHueLightForegroundBrush" Color="{StaticResource Primary100Foreground}"/>
+                    <SolidColorBrush x:Key="PrimaryHueMidBrush" Color="{StaticResource Primary500}"/>
+                    <SolidColorBrush x:Key="PrimaryHueMidForegroundBrush" Color="{StaticResource Primary500Foreground}"/>
+                    <SolidColorBrush x:Key="PrimaryHueDarkBrush" Color="{StaticResource Primary700}"/>
+                    <SolidColorBrush x:Key="PrimaryHueDarkForegroundBrush" Color="{StaticResource Primary700Foreground}"/>
+
+                    <!-- MAHAPPS BRUSHES -->
+                    <SolidColorBrush x:Key="HighlightBrush" Color="{StaticResource Primary700}" options:Freeze="True" />
+                    <SolidColorBrush x:Key="AccentColorBrush" Color="{StaticResource Primary500}" options:Freeze="True" />
+                    <SolidColorBrush x:Key="AccentColorBrush2" Color="{StaticResource Primary400}" options:Freeze="True" />
+                    <SolidColorBrush x:Key="AccentColorBrush3" Color="{StaticResource Primary300}" options:Freeze="True" />
+                    <SolidColorBrush x:Key="AccentColorBrush4" Color="{StaticResource Primary200}" options:Freeze="True" />
+                    <SolidColorBrush x:Key="WindowTitleColorBrush" Color="{StaticResource Primary700}" options:Freeze="True" />
+                    <SolidColorBrush x:Key="AccentSelectedColorBrush" Color="{StaticResource Primary500Foreground}" options:Freeze="True" />
+
+                    <LinearGradientBrush x:Key="ProgressBrush" EndPoint="0.001,0.5" StartPoint="1.002,0.5" options:Freeze="True">
+                        <GradientStop Color="{StaticResource Primary700}" Offset="0" />
+                        <GradientStop Color="{StaticResource Primary300}" Offset="1" />
+                    </LinearGradientBrush>
+                    <SolidColorBrush x:Key="CheckmarkFill" Color="{StaticResource Primary500}" options:Freeze="True" />
+                    <SolidColorBrush x:Key="RightArrowFill" Color="{StaticResource Primary500}" options:Freeze="True" />
+                    <SolidColorBrush x:Key="IdealForegroundColorBrush" Color="{StaticResource Primary500Foreground}" options:Freeze="True" />
+                    <SolidColorBrush x:Key="IdealForegroundDisabledBrush" Color="{StaticResource Primary500}" Opacity="0.4" options:Freeze="True" />
+                </ResourceDictionary>
+
+                <!-- secondary colour -->
+                <ResourceDictionary>
+                    <!-- include your secondary pallette -->
+                    <ResourceDictionary.MergedDictionaries>
+                        <!--<ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/MaterialDesignColor.Yellow.xaml" />-->
+                        <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/MaterialDesignColor.Yellow.xaml" />
+                    </ResourceDictionary.MergedDictionaries>
+
+                    <!-- include a single secondary accent color (and the associated forecolour) -->
+                    <SolidColorBrush x:Key="SecondaryAccentBrush" Color="{StaticResource Accent200}"/>
+                    <SolidColorBrush x:Key="SecondaryAccentForegroundBrush" Color="{StaticResource Accent200Foreground}"/>
+                </ResourceDictionary>
+
+                <!-- Include the Dragablz Material Design style -->
+                <!--<ResourceDictionary Source="pack://application:,,,/Dragablz;component/Themes/materialdesign.xaml"/>-->
+
+                <ResourceDictionary Source="/Resources/Icons.xaml" />
+
+
+            </ResourceDictionary.MergedDictionaries>
+
+            <conv:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+            <conv:BoolToBrushConverter x:Key="BoolToBrushConverter" />
+            <conv:BoolToSelectedBrushConverter x:Key="BoolToSelectedBrushConverter" />
+
+            <Style x:Key="{x:Type ToolTip}"
+       TargetType="ToolTip">
+                <Setter Property="OverridesDefaultStyle"
+          Value="true" />
+                <Setter Property="HasDropShadow"
+          Value="True" />
+                <Setter Property="Foreground" Value="{StaticResource SecondaryAccentForegroundBrush}" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="ToolTip">
+                            <Border Padding="2" Name="Border" Background="{StaticResource SecondaryAccentBrush}"
+                BorderThickness="1"
+                Width="{TemplateBinding Width}"
+                Height="{TemplateBinding Height}" BorderBrush="{StaticResource SecondaryAccentForegroundBrush}" >
+
+                                <ContentPresenter Margin="4" HorizontalAlignment="Left"
+                            VerticalAlignment="Top" />
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="HasDropShadow"
+                   Value="true">
+                                    <Setter TargetName="Border"
+                    Property="CornerRadius"
+                    Value="10" />
+                                    <Setter TargetName="Border"
+                    Property="SnapsToDevicePixels"
+                    Value="true" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <DataTemplate DataType="{x:Type local:SubtitlePart}">
+                <Border MinHeight="50" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                    <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="90" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Border Grid.Column="0" VerticalAlignment="Stretch" Background="{Binding IsSelected, Converter={StaticResource BoolToSelectedBrushConverter}}" TextBlock.Foreground="{DynamicResource PrimaryHueLightForegroundBrush}"
+                                CornerRadius="2 0 0 2"
+                                Padding="8">
+                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding Index}" />
+                        </Border>
+                        
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1" Margin="-25 0 0 0">
+
+                            <Button ToolTip="Edit subtitle" Style="{StaticResource MaterialDesignFloatingActionAccentButton}"
+                                Margin="5,0,0,0" HorizontalAlignment="Right" Command="{Binding EditCommand}">
+                                <Viewbox Width="16" Height="16">
+                                    <Rectangle Width="16" Height="16" Fill="{DynamicResource PrimaryHueLightForegroundBrush}">
+                                        <Rectangle.OpacityMask>
+                                            <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_edit}" />
+                                        </Rectangle.OpacityMask>
+                                    </Rectangle>
+                                </Viewbox>
+                            </Button>
+                        </StackPanel>
+
+                        <StackPanel Margin="30,0,0,0" VerticalAlignment="Center" Grid.Column="1" HorizontalAlignment="Left">
+                            <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                            <TextBlock FontWeight="Bold" Text="{Binding ModifiedStartTiming.Text}" Foreground="{Binding IsStartModified, Converter={StaticResource BoolToBrushConverter}}" />
+                                <TextBlock Text=" --> " />
+                            <TextBlock FontWeight="Bold" Text="{Binding ModifiedEndTiming.Text}"  Foreground="{Binding IsEndModified, Converter={StaticResource BoolToBrushConverter}}" />
+                            </StackPanel>
+                            <TextBlock Text="{Binding Lines}" TextWrapping="Wrap" />
+                        </StackPanel>
+
+                    </Grid>
+                </Border>
+            </DataTemplate>
+
+            <Style x:Key="MetroWindowCloseButtonStyle"
+       TargetType="{x:Type Button}"
+       BasedOn="{StaticResource MetroWindowButtonStyle}">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Grid x:Name="grid"
+                      Background="{TemplateBinding Background}">
+                                <ContentPresenter x:Name="contentPresenter"
+                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                      Margin="{TemplateBinding Padding}"
+                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                      SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                      RecognizesAccessKey="True"
+                                      Opacity="0.75" />
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver"
+                             Value="True">
+                                    <Setter TargetName="contentPresenter"
+                                Property="Opacity"
+                                Value="1" />
+                                    <Setter TargetName="grid"
+                                Property="Background"
+                                Value="#E04343" />
+                                </Trigger>
+                                <Trigger Property="IsMouseOver"
+                             Value="False">
+                                    <Setter TargetName="contentPresenter"
+                                Property="Opacity"
+                                Value=".5" />
+                                </Trigger>
+                                <Trigger Property="IsPressed"
+                             Value="True">
+                                    <Setter TargetName="grid"
+                                Property="Background"
+                                Value="#993D3D" />
+                                </Trigger>
+                                <Trigger Property="IsEnabled"
+                             Value="false">
+                                    <Setter Property="Foreground"
+                                Value="#ADADAD" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+        </ResourceDictionary>
+    </Application.Resources>
+
+</Application>

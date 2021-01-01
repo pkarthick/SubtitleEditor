@@ -1,0 +1,108 @@
+﻿<UserControl x:Class="SubtitleEditor.SubtitleEditorView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SubtitleEditor"
+             xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+            
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    
+            <StackPanel Margin="10">
+
+                <StackPanel Margin="5">
+                    <TextBlock VerticalAlignment="Center" Text="Apply changes to the following subtitles" />
+            <controls:ToggleSwitch HorizontalAlignment="Left" Foreground="White" OnLabel="Yes" OffLabel="No" IsChecked="{Binding Subtitle.PropogateChanges}" />
+                </StackPanel>
+
+                <!--<Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>-->
+
+
+        <Expander Margin="5" IsExpanded="True" Header="Start Time" Foreground="White">
+
+                        <StackPanel>
+                <StackPanel Margin="2" Orientation="Horizontal">
+                                <TextBlock Margin="0,0,0,5" Text="Original" />
+                                <TextBlock Margin="10,0" Text="{Binding StartTiming.Text}" FontWeight="Bold"  />
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal">
+
+                                <StackPanel Margin="2">
+                                    <TextBlock Text="Hours" />
+                                    <controls:NumericUpDown Value="{Binding ModifiedStartTiming.Hours}" Minimum="0" />
+                                </StackPanel>
+
+                    <StackPanel Margin="2">
+                                    <TextBlock Text="Minutes" />
+                                    <controls:NumericUpDown Value="{Binding ModifiedStartTiming.Minutes}" Minimum="0" Maximum="59" />
+                                </StackPanel>
+
+                    <StackPanel Margin="2">
+                                    <TextBlock Text="Seconds" />
+                                    <controls:NumericUpDown Value="{Binding ModifiedStartTiming.Seconds}" Minimum="0" Maximum="59" />
+                                </StackPanel>
+
+                    <StackPanel Margin="2">
+                                    <TextBlock Text="Milliseconds" />
+                                    <controls:NumericUpDown Value="{Binding ModifiedStartTiming.Milliseconds}" Minimum="0" Maximum="999" />
+                                </StackPanel>
+
+                            </StackPanel>
+                        </StackPanel>
+                    </Expander>
+
+        <Expander Grid.Column="1" Margin="5" IsExpanded="True" Header="End Time" BorderThickness="0" Foreground="White">
+
+                        <StackPanel>
+                <StackPanel Margin="2" Orientation="Horizontal">
+                                <TextBlock Text="Original" />
+                                <TextBlock Margin="10,0" Text="{Binding EndTiming.Text}" FontWeight="Bold" />
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal">
+
+                    <StackPanel Margin="2">
+                                    <TextBlock Text="Hours" />
+                                    <controls:NumericUpDown Value="{Binding ModifiedEndTiming.Hours}" Minimum="0" />
+                                </StackPanel>
+
+                    <StackPanel Margin="2">
+                                    <TextBlock Text="Minutes" />
+                                    <controls:NumericUpDown Value="{Binding ModifiedEndTiming.Minutes}" Minimum="0" Maximum="59" />
+                                </StackPanel>
+
+                    <StackPanel Margin="2">
+                                    <TextBlock Text="Seconds" />
+                                    <controls:NumericUpDown Value="{Binding ModifiedEndTiming.Seconds}" Minimum="0" Maximum="59" />
+                                </StackPanel>
+
+                    <StackPanel Margin="2">
+                                    <TextBlock Text="Milliseconds" />
+                                    <controls:NumericUpDown Value="{Binding ModifiedEndTiming.Milliseconds}" Minimum="0" Maximum="999" />
+                                </StackPanel>
+
+                            </StackPanel>
+                        </StackPanel>
+                    </Expander>
+
+
+        <Expander Margin="5" IsExpanded="True" Grid.Column="2" Header="Content Editor" BorderThickness="0" Foreground="White">
+                        <TextBox FontSize="16" Text="{Binding Lines}"/>
+
+                        <!--<ctl:RichTextEditor FontSize="16" Text="{Binding Lines, Mode=TwoWay}"/>-->
+                    </Expander>
+
+                <!--</Grid>-->
+
+
+            </StackPanel>
+
+</UserControl>
