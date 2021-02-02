@@ -1,4 +1,4 @@
-# SubtitleEditor
+# Subtitle Editor
 Application to fix subtitle files that do not match the video content. Timing of displaying a subtitle could be out of sync with the audio. 
 Developed using C#, .NET, WPF MahApps, Material Design
 
